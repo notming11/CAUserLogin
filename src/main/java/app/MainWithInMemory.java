@@ -2,6 +2,7 @@ package app;
 
 import data_access.InMemoryUserDataAccessObject;
 import entity.CommonUserFactory;
+import entity.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
@@ -65,6 +66,10 @@ public class MainWithInMemory {
 
         viewManagerModel.setState(signupView.getViewName());
         viewManagerModel.firePropertyChanged();
+
+        final CommonUserFactory commonUserFactory = new CommonUserFactory();
+        final User user = commonUserFactory.create(null, null);
+        userDataAccessObject.setCurrentUser(user.getName());
 
         application.pack();
         application.setVisible(true);
